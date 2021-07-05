@@ -1,5 +1,5 @@
 const express = require('express');
-const IPinfoWrapper = require('node-ipinfo');
+const IPinfo = require('node-ipinfo');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -7,15 +7,15 @@ dotenv.config();
 const router = express.Router();
 
 const token = process.env.IPINFO_ACCESS_KEY;
-const ipinfoWrapper = new IPinfoWrapper(token);
+const ipinfo = new IPinfo(token);
 
 router.route('/')
 .get(async (req, res) => {
     try {
-        const ip = req.ip.match(/(\d|\.)*$/)[0];
+        const ip = req.ip;
         console.log(ip);
         console.log('tger');
-        const response = await ipinfoWrapper.lookupIp(ip);
+        const response = await ipinfo.lookupIp(ip);
         res.json(response);
     } catch (e) {
         console.error(e);
