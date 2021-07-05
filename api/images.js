@@ -15,8 +15,7 @@ router.route('/:query')
     });
 
     const jsonResponse = await rawResponse.json();
-    return jsonResponse;
-
+    res.json(rawResponse);
 });
 
 module.exports = router;

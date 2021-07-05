@@ -15,15 +15,18 @@ let timezone;
 // });
 
 //When in production:
-fetch('/location')
-//fetch('https://super-fancy-weather.herokuapp.com/location')
+//fetch('/location')
+fetch('https://super-fancy-weather.herokuapp.com/location')
 .then(async (res) => {
     const data = await res.json();
     city = data.city;
     country = data.country;
     loc = data.loc.split(',');
     timezone = data.timezone;
-    console.log(city);
+})
+.then(async () => {
+    const imageOptions = await fetch(`https://super-fancy-weather.herokuapp.com/images/${city}`);
+    app.style.backgroundImage = `url('${imageOptions.results[0].urls.full}')`;
 })
 .catch((e) => {
     console.error(e);
