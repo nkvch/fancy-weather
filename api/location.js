@@ -1,15 +1,21 @@
 const express = require('express');
 const fetch = require('node-fetch');
-
-const BASE_URL = 'https://ipinfo.io';
+const IPinfoWrapper = require('node-ipinfo');
 
 const router = express.Router();
 
+const token = process.env.IPINFO_ACCESS_KEY;
+const ipinfoWrapper = new IPinfoWrapper(token);
+
 router.route('/')
 .get(async (req, res) => {
-    let ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
-    console.log(ip);
-    res.json({status: 'wewe'});
+    try {
+        const ip = req.ip;
+        const response = await ipinfoWrapper.lookupIp(ip);
+        res.json({status: 'wewe', data: res});
+    } catch (e) {
+        console.error(e);
+    }
 })
 
 const getLocation = async () => {
