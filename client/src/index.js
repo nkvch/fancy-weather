@@ -5,14 +5,12 @@ const app = document.createElement('div');
 app.className = 'container-fluid app';
 document.body.appendChild(app);
 
-ImageService.searchWithQuery('warsaw')
-.then(warsaw => {
-    app.style.backgroundImage = `url('${warsaw.results[0].urls.full}')`;
-});
+// ImageService.searchWithQuery('warsaw')
+// .then(warsaw => {
+//     app.style.backgroundImage = `url('${warsaw.results[0].urls.full}')`;
+// });
 
-fetch(`http://localhost:8000/location`, {
-    method: 'GET'
-})
+fetch('/location')
 .then(async (res) => {
     const data = await res.json();
     console.log('alala');

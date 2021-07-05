@@ -14,6 +14,7 @@ router.route('/')
         res.json(response);
     } catch (e) {
         console.error(e);
+        res.json(e);
     }
 })
 
