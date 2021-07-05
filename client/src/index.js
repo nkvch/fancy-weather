@@ -16,7 +16,7 @@ fetch(`http://localhost:8000/location`)
     const data = await res.json();
     console.log('alala');
     console.log(data);
-}
+})
 
 
 
