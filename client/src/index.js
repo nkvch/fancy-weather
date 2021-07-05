@@ -11,7 +11,9 @@ ImageService.searchWithQuery('warsaw')
     app.style.backgroundImage = `url('${warsaw.results[0].urls.full}')`;
 });
 
-fetch(`http://localhost:8000/location`)
+fetch(`http://localhost:8000/location`, {
+    method: 'GET'
+})
 .then(async (res) => {
     const data = await res.json();
     console.log('alala');
