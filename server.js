@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const location = require('./api/location');
 const images = require('./api/images');
+const weather = require('./api/weather');
 
 dotenv.config();
 
@@ -16,7 +17,7 @@ app.enable('trust proxy');
 
 app.use('/location', location);
 app.use('/images', images);
-
+app.use('/weather', weather);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/dist'));

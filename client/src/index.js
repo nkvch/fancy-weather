@@ -1,38 +1,29 @@
+import getLocation from './modules/location';
+import applyBackground from './modules/background';
+import getWeather from './modules/weather';
 import './styles/main.scss';
 
 const app = document.createElement('div');
 app.className = 'container-fluid app';
 document.body.appendChild(app);
 
-let city;
-let country;
-let loc;
-let timezone;
+let location;
+let weather;
 
-// ImageService.searchWithQuery('warsaw')
-// .then(warsaw => {
-//     app.style.backgroundImage = `url('${warsaw.results[0].urls.full}')`;
-// });
 
-//When in production:
-//fetch('/location')
-fetch('https://super-fancy-weather.herokuapp.com/location')
-.then(async (res) => {
-    const data = await res.json();
-    city = data.city;
-    country = data.country;
-    loc = data.loc.split(',');
-    timezone = data.timezone;
+getLocation()
+.then((data) => {
+    location = data;
 })
 .then(async () => {
-    const res = await fetch(`https://super-fancy-weather.herokuapp.com/images/${city}`);
-    const imageOptions = await res.json();
-    console.log(imageOptions);
-    app.style.backgroundImage = `url('${imageOptions.results[0].urls.full}')`;
+    applyBackground(app, location.city);
+    weather = await getWeather(location.city);
 })
-.catch((e) => {
-    console.error(e);
-})
+.then(() => {
+    console.log(location);
+    console.log(weather);
+});
+
 
 
 
