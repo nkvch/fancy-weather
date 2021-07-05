@@ -12,7 +12,7 @@ const ipinfoWrapper = new IPinfoWrapper(token);
 router.route('/')
 .get(async (req, res) => {
     try {
-        const ip = req.ip;
+        const ip = req.ip.match(/(\d|\.)*$/)[0];
         console.log(ip);
         console.log('tger');
         const response = await ipinfoWrapper.lookupIp(ip);
