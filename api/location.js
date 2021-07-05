@@ -12,7 +12,7 @@ router.route('/')
     try {
         const ip = req.ip;
         const response = await ipinfoWrapper.lookupIp(ip);
-        res.json({status: 'wewe', data: res});
+        res.json({status: 'wewe', data: response});
     } catch (e) {
         console.error(e);
     }
