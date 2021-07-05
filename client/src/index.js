@@ -12,7 +12,11 @@ ImageService.searchWithQuery('warsaw')
 });
 
 fetch(`http://localhost:8000/location`)
-.then(async (res) => console.log(await res.json()));
+.then(async (res) => {
+    const data = await res.json();
+    console.log('alala');
+    console.log(data);
+}
 
 
 
