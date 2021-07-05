@@ -16,8 +16,10 @@ router.route('/')
         console.log(token);
         console.log(ip);
         console.log('tger');
-        const response = await ipinfo.lookupIp(ip);
-        res.json(response);
+        // const response = await ipinfo.lookupIp(ip);
+        const response = await fetch(`https://ipinfo.io/${ip}?token=${token}`);
+        const json = await response.json();
+        res.json(json);
     } catch (e) {
         console.error(e);
         res.json(e);
