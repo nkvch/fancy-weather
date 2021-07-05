@@ -1,5 +1,8 @@
 const express = require('express');
 const IPinfoWrapper = require('node-ipinfo');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const router = express.Router();
 
@@ -10,6 +13,7 @@ router.route('/')
 .get(async (req, res) => {
     try {
         const ip = req.ip;
+        console.log(ip);
         const response = await ipinfoWrapper.lookupIp(ip);
         res.json(response);
     } catch (e) {
