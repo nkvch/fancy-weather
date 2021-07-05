@@ -2,7 +2,7 @@ const express = require('express');
 const fetch = require('node-fetch');
 const dotenv = require('dotenv');
 
-const BASE_URL = 'https://api.unsplash.com/';
+const BASE_URL = 'https://api.unsplash.com';
 const router = express.Router();
 
 router.route('/:query')
@@ -13,9 +13,8 @@ router.route('/:query')
             Authorization: 'Client-ID '+ process.env.UNSPLASH_ACCESS_KEY
         }
     });
-
     const jsonResponse = await rawResponse.json();
-    res.json(rawResponse);
+    res.json(jsonResponse);
 });
 
 module.exports = router;

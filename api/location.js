@@ -14,9 +14,6 @@ router.route('/')
 .get(async (req, res) => {
     try {
         const ip = req.ip;
-        console.log(token);
-        console.log(ip);
-        console.log('tger');
         // const response = await ipinfo.lookupIp(ip);
         const response = await fetch(`https://ipinfo.io/${ip}?token=${token}`);
         const json = await response.json();
@@ -26,15 +23,5 @@ router.route('/')
         res.json(e);
     }
 })
-
-const getLocation = async () => {
-    try {
-        const res = await fetch(`${BASE_URL}/json?token=${process.env.IPINFO_ACCESS_KEY}`);
-        const json = await res.json();
-        return json;
-    } catch (e) {
-        console.error(e);
-    }
-}
 
 module.exports = router;

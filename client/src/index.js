@@ -25,7 +25,9 @@ fetch('https://super-fancy-weather.herokuapp.com/location')
     timezone = data.timezone;
 })
 .then(async () => {
-    const imageOptions = await fetch(`https://super-fancy-weather.herokuapp.com/images/${city}`);
+    const res = await fetch(`https://super-fancy-weather.herokuapp.com/images/${city}`);
+    const imageOptions = await res.json();
+    console.log(imageOptions);
     app.style.backgroundImage = `url('${imageOptions.results[0].urls.full}')`;
 })
 .catch((e) => {
