@@ -17,6 +17,9 @@ fetch(`http://localhost:8000/location`)
     console.log('alala');
     console.log(data);
 })
+.catch((e) => {
+    console.error(e);
+})
 
 
 
