@@ -13,7 +13,7 @@ const ipinfo = new IPinfo(token);
 router.route('/')
 .get(async (req, res) => {
     try {
-        const ip = req.ip.split(':').pop();
+        const ip = req.ip;
         console.log(token);
         console.log(ip);
         console.log('tger');
