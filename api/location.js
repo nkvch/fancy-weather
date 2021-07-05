@@ -14,6 +14,7 @@ router.route('/')
     try {
         const ip = req.ip;
         console.log(ip);
+        console.log('tger');
         const response = await ipinfoWrapper.lookupIp(ip);
         res.json(response);
     } catch (e) {
