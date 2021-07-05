@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 const location = require('./api/location');
+const images = require('./api/images');
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.enable('trust proxy');
 
 app.use('/location', location);
+app.use('/images', images);
 
 
 if (process.env.NODE_ENV === 'production') {
