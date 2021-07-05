@@ -14,10 +14,13 @@ app.use(cors());
 
 app.use('/location', location);
 
-app.use(express.static('client/dist'));
-app.get('*', async (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
-});
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/dist'));
+    app.get('*', async (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
+    });
+}
 
 app.listen(process.env.PORT || port, () => {
     console.log(`listening on port ${process.env.PORT || port}`);
