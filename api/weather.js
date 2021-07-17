@@ -12,7 +12,8 @@ const router = express.Router();
 router.route('/:city')
 .get(async (req, res) => {
     try {
-        const response = await fetch(`${BASE_URL}?q=${req.params.city}&appid=${apiKey}&units=metric`);
+        const { degrees } = req.query;
+        const response = await fetch(`${BASE_URL}?q=${req.params.city}&appid=${apiKey}${ degrees === 'C' ? '&units=metric' : '' }`);
         const data = await response.json();
         res.json(data);
     } catch (e) {

@@ -1,0 +1,13 @@
+@mixin centralize($dir) {
+    display: flex;
+    flex-flow: $dir;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin spread($dir) {
+    display: flex;
+    flex-flow: $dir;
+    justify-content: space-around;
+    align-items: center;
+}

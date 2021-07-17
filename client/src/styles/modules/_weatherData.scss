@@ -1,0 +1,5 @@
+@import '../mixins/customCard';
+
+.weather-data {
+    @include custom-card();
+}

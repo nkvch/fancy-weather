@@ -1,6 +1,6 @@
-export default async (app, city) => {
-    const res = await fetch(`/images/${city}`);
+export default async (loc) => {
+    const formattedCity = loc.city.normalize("NFD").replace(/\p{Diacritic}/gu, "").replace('ł', 'l');
+    const res = await fetch(`http://localhost:8000/images/${formattedCity}`);
     const imageOptions = await res.json();
-    console.log(imageOptions);
-    app.style.backgroundImage = `url('${imageOptions.results[0].urls.full}')`;
+    return imageOptions.results[0].urls.full;
 }

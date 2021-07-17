@@ -1,0 +1,8 @@
+@import '../mixins/customCard';
+
+.location-data-container {
+    @include custom-card();
+    .city-container {
+        width: fit-content;
+    }
+}
