@@ -25,6 +25,21 @@ const render = (app, appData) => {
     // const switchLang = renderSwitchLang(appData);
     // const switchCelsiusButtons = renderSwitchDegrees(appData);
 
+    const topRow = document.createElement('div');
+    topRow.className = 'row top-row mb-4';
+
+    const cityNameCol = document.createElement('div');
+    cityNameCol.className = 'col-lg-4 city-name-column mb-4';
+    cityNameCol.id = 'cityNameColumn';
+
+    const inputsColumn = document.createElement('div');
+    inputsColumn.className = 'col-lg-8 inputs-column';
+
+    topRow.appendChild(cityNameCol);
+    topRow.appendChild(inputsColumn);
+
+
+
     const cityInput = renderCitySearch();
 
     ////
@@ -33,14 +48,18 @@ const render = (app, appData) => {
     inputsRow.className = 'row';
 
     const switchesCol = document.createElement('div');
-    switchesCol.className = 'col-sm-4 col-md-5 col-lg-6 col-xl-8 switches-column';
+    switchesCol.className = 'col-sm-4 col-md-5 col-lg-6 col-xl-8 switches-column mb-4';
+
+    const resfreshHolder = document.createElement('div');
+    resfreshHolder.id = 'refreshHolder';
 
     const switchDegreesHolder = document.createElement('div');
     switchDegreesHolder.id = 'switch-degrees-holder';
 
     const switchLangHolder = document.createElement('div');
-    switchLangHolder.id = 'switch-lang-holder';    
+    switchLangHolder.id = 'switch-lang-holder';
 
+    switchesCol.appendChild(resfreshHolder);
     switchesCol.appendChild(switchDegreesHolder);
     switchesCol.appendChild(switchLangHolder);
 
@@ -51,13 +70,15 @@ const render = (app, appData) => {
 
     inputsRow.appendChild(switchesCol);
     inputsRow.appendChild(citySearchCol);
+
+    inputsColumn.appendChild(inputsRow);
     
     const mainRow = document.createElement('div');
     mainRow.className = 'row';
 
     const colDeg = document.createElement('div');
     colDeg.id = 'temperature-column';
-    colDeg.className = 'col-sm-4';
+    colDeg.className = 'col-md-4';
 
     ////
 
@@ -69,7 +90,7 @@ const render = (app, appData) => {
     
     const colWeatherData = document.createElement('div');
     colWeatherData.id = 'weather-data-column';
-    colWeatherData.className = 'col-sm-4';
+    colWeatherData.className = 'col-md-4';
 
     ////
 
@@ -81,7 +102,7 @@ const render = (app, appData) => {
 
     const colLoc = document.createElement('div');
     colLoc.id = 'location-column';
-    colLoc.className = 'col-sm-4';
+    colLoc.className = 'col-md-4';
 
     ////
 
@@ -96,7 +117,7 @@ const render = (app, appData) => {
     mainRow.appendChild(colWeatherData);
     mainRow.appendChild(colLoc);
 
-    container.appendChild(inputsRow);
+    container.appendChild(topRow);
     container.appendChild(mainRow);
 
     const map = renderMap();
