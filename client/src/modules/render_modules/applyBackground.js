@@ -1,4 +1,4 @@
 
-export default (app, appData) => {
-    app.style.backgroundImage = `url('${appData.backgroundImage}')`;
+export default (appData) => {
+    document.body.style.backgroundImage = `url('${appData.backgroundImage}')`;
 }

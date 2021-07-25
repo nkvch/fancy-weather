@@ -1,0 +1,12 @@
+@import './keyframes';
+
+.refresh-icon {
+    height: 16px;
+    width: 16px;
+    &.loading {
+        animation: 0.5s rotate360 infinite ease;
+    }
+    svg {
+        margin-top: -11px;
+    }
+}

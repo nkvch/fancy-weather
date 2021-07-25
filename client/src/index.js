@@ -15,8 +15,10 @@ import applyBackground from './modules/render_modules/applyBackground';
 import renderCityName from './modules/render_modules/cityName';
 import './styles/main.scss';
 import { prepareText } from './modules/textTemplates';
+import { onLoading, offLoading } from './modules/render_modules/loading';
 
 const app = document.createElement('div');
+app.id = 'app';
 app.className = 'container-fluid app';
 document.body.appendChild(app);
 
@@ -24,6 +26,7 @@ const appData = {
     langInternal: localStorage.getItem('lang') || 'en',
     set lang(newLang) {
         if (newLang !== this.langInternal) {
+            onLoading();
             this.langInternal = newLang;
             localStorage.setItem('lang', newLang);
             renderSwitchLang(appData);
@@ -33,6 +36,7 @@ const appData = {
                 renderLocationData(this.locationFormat);
                 renderCityName(this.locationFormat.city);
                 renderWeatherData(this.weatherFormat);
+                offLoading();
             });
         }
     },
@@ -44,13 +48,13 @@ const appData = {
     degreesInternal: localStorage.getItem('degrees') || 'C',
     set degrees(newVal) {
         if (newVal !== this.degreesInternal) {
-            console.log(newVal);
+             
             this.degreesInternal = newVal;
             localStorage.setItem('degrees', newVal);
             renderSwitchDegrees(appData);
             getWeather(this.location, this.degrees)
             .then(newWeather => {
-                console.log(newWeather);
+                 
                 this.weather = newWeather;
             });
         }
@@ -59,9 +63,13 @@ const appData = {
         return this.degreesInternal;
     },
 
-    locationInternal: JSON.parse(localStorage.getItem('location')) || null,
+    locationInternal: 
+        localStorage.getItem('location') 
+        && localStorage.getItem('location') !== 'undefined' 
+        ? JSON.parse(localStorage.getItem('location'))
+        : null,
     set location(newLoc) {
-        
+        onLoading();
         this.locationInternal = newLoc;
         localStorage.setItem('location', JSON.stringify(newLoc));
         initMap(this);
@@ -71,27 +79,15 @@ const appData = {
             const text = data[1];
             this.textTemplate = text;
             this.weather = weather;
-            //renderTemperature(this.weatherFormat);
-            //renderWeatherData(this.weatherFormat);
+            getBackground(newLoc, weather)
+            .then(background => {
+                this.backgroundImage = background;
+                applyBackground(this);
+                offLoading();
+            });
             renderLocationData(this.locationFormat);
             renderCityName(this.locationFormat.city);
         });
-
-        getBackground(newLoc)
-        .then(background => {
-            this.backgroundImage = background;
-            applyBackground(app, this);
-        });
-        
-        // Promise.all([getWeather(newLoc, this.degrees), getBackground(newLoc), prepareText(newLoc, this.lang)])
-        // .then(results => {
-        //     const weather = results[0];
-        //     const background = results[1];
-        //     const text = results[2];
-        //     this.weather = weather;
-        //     this.backgroundImage = background;
-        //     this.textTemplate = text;
-        // });
     },
 
     get location() {
@@ -122,7 +118,6 @@ const appData = {
 
     textTemplateInternal: JSON.parse(localStorage.getItem('textTemplate')) || null,
     set textTemplate(newText) {
-        // this.textTemplateListener(newText);
         this.textTemplateInternal = newText;
         localStorage.setItem('textTemplate', JSON.stringify(newText));
     },
@@ -144,7 +139,7 @@ const appData = {
 getLocation()
 .then((data) => {
     render(app, appData);
-    renderRefreshWeather();
+    renderRefreshWeather(appData);
     renderSwitchLang(appData);
     renderSwitchDegrees(appData);
     appData.location = data;

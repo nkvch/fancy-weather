@@ -29,5 +29,8 @@
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
     "node-ipinfo": "^2.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }

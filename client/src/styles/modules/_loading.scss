@@ -1,0 +1,19 @@
+
+.loading-bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.479);
+    z-index: 1200;
+}
+
+.loading-spinner {
+    color: white;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    justify-self: center;
+    align-self: center;
+}

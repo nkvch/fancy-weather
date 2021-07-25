@@ -1,9 +1,7 @@
 export default async () => {
     try {
         // if production
-        //const res = await fetch('/location');
-        // else
-        const res = await fetch(`https://ipinfo.io/json?token=b85e547dc988a1`);
+        const res = await fetch('http://localhost:8000/location');
         const data = await res.json();
         const { city, country, loc, timezone } = data;
         return {

@@ -48,7 +48,7 @@ const render = (app, appData) => {
     inputsRow.className = 'row';
 
     const switchesCol = document.createElement('div');
-    switchesCol.className = 'col-sm-4 col-md-5 col-lg-6 col-xl-8 switches-column mb-4';
+    switchesCol.className = 'col-sm-6 col-md-5 col-lg-6 col-xl-8 switches-column mb-4';
 
     const resfreshHolder = document.createElement('div');
     resfreshHolder.id = 'refreshHolder';
@@ -64,7 +64,7 @@ const render = (app, appData) => {
     switchesCol.appendChild(switchLangHolder);
 
     const citySearchCol = document.createElement('div');
-    citySearchCol.className = 'col-sm-8 col-md-7 col-lg-6 col-xl-4 city-search-column';
+    citySearchCol.className = 'col-sm-6 col-md-7 col-lg-6 col-xl-4 city-search-column';
 
     citySearchCol.appendChild(cityInput);
 
@@ -78,7 +78,7 @@ const render = (app, appData) => {
 
     const colDeg = document.createElement('div');
     colDeg.id = 'temperature-column';
-    colDeg.className = 'col-md-4';
+    colDeg.className = 'col-lg-4';
 
     ////
 
@@ -90,7 +90,7 @@ const render = (app, appData) => {
     
     const colWeatherData = document.createElement('div');
     colWeatherData.id = 'weather-data-column';
-    colWeatherData.className = 'col-md-4';
+    colWeatherData.className = 'col-lg-4';
 
     ////
 
@@ -102,7 +102,7 @@ const render = (app, appData) => {
 
     const colLoc = document.createElement('div');
     colLoc.id = 'location-column';
-    colLoc.className = 'col-md-4';
+    colLoc.className = 'col-lg-4';
 
     ////
 

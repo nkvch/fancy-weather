@@ -7,9 +7,9 @@ router.route('/')
 .post(async (req, res) => {
     const { to, from } = req.query;
     const { text } = req.body;
-    console.log(to);
-    console.log(from);
-    console.log(text);
+     
+     
+     
     const options = {
         method: 'GET',
         url: 'https://nlp-translation.p.rapidapi.com/v1/translate',

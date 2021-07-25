@@ -1,7 +1,7 @@
 import { textListTemplate } from "./template";
 
 export default (weatherFormat) => {
-    console.log('runs');
+     
     const column = document.getElementById('weather-data-column');
     column.innerText = '';
     const weatherData = [
